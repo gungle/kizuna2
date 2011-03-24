@@ -1,0 +1,56 @@
+<h1>災害編集</h1>
+
+<% form_for(@disaster) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    個人<br />
+	<%= collection_select(:disaster, :personal_id, Personal.find(:all), :id, :full_name)%> 
+  </p>
+  <p>
+    組<br />
+	<%= collection_select(:disaster, :group_id, Group.find(:all), :id, :group_name)%> 
+  </p>
+  <p>
+    <%= f.label :emergency_kind %><br />
+	<%= select(:disaster, :emergency_kind, getemergencykind)%>
+  </p>
+  <p>
+    <%= f.label :disaster_status_kind %><br />
+	<%= select(:disaster, :disaster_status_kind, getdisasterkind)%>
+  </p>
+  <p>
+    <%= f.label :triage_kind %><br />
+	<%= select(:disaster, :triage_kind, gettriagekind)%>
+  </p>
+  <p>
+    <%= f.label :done_kind %><br />
+	<%= select(:disaster, :done_kind, getdonekind)%>
+  </p>
+  <p>
+    <%= f.label :now_lat %><br />
+    <%= f.text_field :now_lat %>
+  </p>
+  <p>
+    <%= f.label :now_lon %><br />
+    <%= f.text_field :now_lon %>
+  </p>
+  <p>
+    <%= f.label :picture_path %><br />
+    <%= f.text_field :picture_path, :size => "64" %>
+  </p>
+  <p>
+    <%= f.label :disaster_memo %><br />
+    <%= f.text_field :disaster_memo, :size => "128" %>
+  </p>
+  <p>
+  	<!-- PC ONLY-->
+    <input type="hidden" name="pc" value="1">
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @disaster %> |
+<%= link_to "Back", {:controller => :disasters, :pc => "1"}%> |
+<a href="http://maps.google.co.jp/?ie=UTF8&ll=33.225172,131.611812&spn=0.007584,0.010493&z=17&brcurrent=3,0x35469f42f1b3200f:0x59c7ce6736e75fed,1" target="_blank">上野地区の地図</a>
+

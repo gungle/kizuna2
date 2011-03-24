@@ -1,0 +1,42 @@
+<h1>位置情報編集</h1>
+
+<% form_for(@place) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    組ID<br />
+    <%= f.text_field :group_id %>
+  </p>
+  <p>
+    位置種別<br />
+	<%= select(:place, :place_kind, getplacekind)%>
+  </p>
+  <p>
+    タイトル<br />
+    <%= f.text_field :place_title %>
+  </p>
+  <p>
+    説明<br />
+    <%= f.text_area :place_explain %>
+  </p>
+  <p>
+    lat<br />
+    <%= f.text_field :place_lat %>
+  </p>
+  <p>
+    lon<br />
+    <%= f.text_field :place_lon %>
+  </p>
+  <p>
+    アイコンパス<br />
+    <%= f.text_field :picture_path, :size => "64" %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @place %> |
+<%= link_to 'Back', places_path %> |
+<a href="http://maps.google.co.jp/?ie=UTF8&ll=33.225172,131.611812&spn=0.007584,0.010493&z=17&brcurrent=3,0x35469f42f1b3200f:0x59c7ce6736e75fed,1" target="_blank">上野地区の地図</a>
+

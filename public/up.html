@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>ファイルアップロード</title>
+</head>
+<body>
+
+<p style="color: green"></p>
+
+<h1>Editing disaster</h1>
+
+<form action="http://0.0.0.0:3001/disasters.xml" class="edit_disaster" id="edit_disaster_2" method="post" enctype="multipart/form-data">
+
+  <p>
+    <label for="disaster_personal_id">Personal ID</label><br />
+    <input id="disaster_personal_id" name="disaster[personal_id]" size="30" type="text" value="1" />
+  </p>
+  <p>
+    <label for="disaster_group_id">Group ID</label><br />
+    <input id="disaster_group_id" name="disaster[group_id]" size="30" type="text" value="1" />
+  </p>
+  <p>
+    <label for="disaster_emergency_kind">Emergency kind</label><br />
+    <input id="disaster_emergency_kind" name="disaster[emergency_kind]" size="30" type="text" value="1" />
+  </p>
+  <p>
+    <label for="disaster_disaster_status_kind">Disaster status kind</label><br />
+    <input id="disaster_disaster_status_kind" name="disaster[disaster_status_kind]" size="30" type="text" value="1" />
+  </p>
+  <p>
+    <label for="disaster_triage_kind">Triage kind</label><br />
+    <input id="disaster_triage_kind" name="disaster[triage_kind]" size="30" type="text" value="0" />
+  </p>
+  <p>
+    <label for="disaster_done_kind">Done kind</label><br />
+    <input id="disaster_done_kind" name="disaster[done_kind]" size="30" type="text" value="0" />
+  </p>
+  <p>
+    <label for="disaster_now_lat">Now lat</label><br />
+    <input id="disaster_now_lat" name="disaster[now_lat]" size="30" type="text" value="123.111" />
+  </p>
+  <p>
+    <label for="disaster_now_lon">Now lon</label><br />
+    <input id="disaster_now_lon" name="disaster[now_lon]" size="30" type="text" value="34.1111" />
+  </p>
+  <p>
+    <label for="disaster_picture">Picture</label><br />
+    <input id="disaster_picture" name="disaster[picture]" size="30" type="file" value="" />
+  </p>
+  <p>
+    <input id="disaster_submit" name="commit" type="submit" value="Update" />
+  </p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>SCOPE2 管理画面</title>
+	</head>
+	<body>
+		<h1>SCOPE2 防災SNS管理画面</h1>
+		<p>
+			<% if flash[:result] -%>
+			<%= flash[:result] %>
+			<% end -%>
+		</p>
+		
+		<hr>
+		
+		<h2>ToDo</h2>
+		<ul>
+			<li>初期モード設定処理（災害モードを平常時、組共有解除、災害データ削除）</li>
+			<li>災害時データ投入処理１(震災直後)，２(Push時の追加災害情報)</li>
+		</ul>
+		
+		<hr>
+		
+		<h2>①初期モード設定処理</h2>
+		<p><%= link_to "初期モード設定", {:controller => :stories, :action => :init}%></p>
+
+		<h2>②災害(被害者情報など)データ投入</h2>
+		<p><%= link_to "災害データ投入１", {:controller => :stories, :action => :disaster1} %></p>
+
+		<h2>③災害モードに変更する</h2>
+		<p>
+			<% form_tag({:controller => :modes, :action => :update, :id => 1}, :method => :put) do %>
+			モード：
+			<% if @mode[:mode_kind] == 0 %>
+				<%= radio_button :mode, :mode_kind, 0, :checked=>'checked' %>平常時　
+				<%= radio_button :mode, :mode_kind, 1 %>災害時
+				<input type="submit" value="更新">
+			<% else %>
+				<%= radio_button :mode, :mode_kind, 0 %>平常時　
+				<%= radio_button :mode, :mode_kind, 1, :checked=>'checked' %>災害時
+				<input type="submit" value="更新">
+			<% end %>
+			<% end %>
+
+		</p>
+
+		<h2>④災害(建物倒壊など)情報投入</h2>
+		<p><%= link_to "災害データ投入", {:controller => :stories, :action => :disaster2} %></p>
+
+		<h2>⑤追加災害(建物倒壊など)情報通知（Push）</h2>
+		<p><%= link_to "Push Notification", {:controller => :personalsafeties, :action => :pushnotify}%></p>
+
+		<hr>
+		
+		<h2>アクセス制御モード変更</h2>
+		<p> <font color="red">実験条件に合わせて変更すること</font>
+			<% form_tag({:controller => :accesses, :action => :update, :id => 1}, :method => :put) do %>
+			モード：
+			<% if @access[:access_kind] == 0 %>
+				<%= radio_button :access, :access_kind, 0, :checked=>'checked' %>分散条件　
+				<%= radio_button :access, :access_kind, 1 %>共有条件
+				<input type="submit" value="更新">
+			<% else %>
+				<%= radio_button :access, :access_kind, 0 %>分散条件
+				<%= radio_button :access, :access_kind, 1, :checked=>'checked' %>共有条件
+				<input type="submit" value="更新">
+			<% end %>
+			<% end %>
+
+		</p>
+
+		<hr>
+
+		<h2>組　管理 (Group)</h2>
+		<p><%= link_to "組 管理画面", {:controller => :groups}%></p>
+
+		<h2>世帯　管理 (Family)</h2>
+		<p><%= link_to "世帯 管理画面", {:controller => :families}%></p>
+
+		<h2>個人　管理 (Personal)</h2>
+		<p><%= link_to "個人 管理画面", {:controller => :personals}%></p>
+
+		<h2>安否確認　管理 (PersonalSafty)</h2>
+		<p><%= link_to "安否確認 管理画面", {:controller => :personalsafeties}%></p>
+
+		<h2>位置　管理 (Place)</h2>
+		<p><%= link_to "位置 管理画面", {:controller => :places}%></p>
+
+		<h2>災害　管理 (Disaster)</h2>
+		<p><%= link_to "災害 管理画面", {:controller => :disasters, :pc => "1"}%></p>
+				
+		<h2>デバイストークン　管理 (DeviceToken)</h2>
+		<p><%= link_to "デバイストークン 管理画面", {:controller => :devicetokens}%></p>
+
+		<h2>災害メモ 実証実験用　管理 (DisasterMemo)</h2>
+		<p><%= link_to "災害 管理画面", {:controller => :disastermemos}%></p>
+
+		<p><%= link_to "logout", {:controller => :logouts}%></p>
+	</body>
+</html>

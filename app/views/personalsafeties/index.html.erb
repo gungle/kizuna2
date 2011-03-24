@@ -1,0 +1,26 @@
+<h1>個人安否確認一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>個人名</th>
+    <th>組名</th>
+    <th>世帯名</th>
+    <th>個人安否種別</th>
+  </tr>
+
+<% @personalsafeties.each do |personalsafety| %>
+  <tr>
+    <td><%=h Personal.find(personalsafety.personal_id).full_name %></td>
+    <td><%=h Group.find(personalsafety.group_id).group_name %></td>
+    <td><%=h Family.find(personalsafety.family_id).family_name %></td>
+    <td><%= getValByCode(getsafetykind, personalsafety.personal_safety_kind) %></td>
+    <td><%= link_to 'Edit', edit_personalsafety_path(personalsafety) %></td>
+    <td><%= link_to 'Destroy', personalsafety, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New personalsafety', new_personalsafety_path %>
+<%= link_to 'TOP', "/logins/top" %>

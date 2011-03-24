@@ -1,0 +1,37 @@
+<h1>世帯新規</h1>
+
+<% form_for(@family) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    組<br />
+	<%= collection_select(:family, :group_id, Group.find(:all), :id, :group_name)%> 
+  </p>
+  <p>
+    世帯名<br />
+    <%= f.text_field :family_name %>
+  </p>
+  <p>
+    住所<br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    代表電話<br />
+    <%= f.text_field :home_tel %>(ハイフンなし)
+  </p>
+  <p>
+    lat<br />
+    <%= f.text_field :home_lat %>
+  </p>
+  <p>
+    lon<br />
+    <%= f.text_field :home_lon %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', families_path %> |
+<a href="http://maps.google.co.jp/?ie=UTF8&ll=33.225172,131.611812&spn=0.007584,0.010493&z=17&brcurrent=3,0x35469f42f1b3200f:0x59c7ce6736e75fed,1" target="_blank">上野地区の地図</a>
+

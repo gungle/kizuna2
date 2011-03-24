@@ -1,0 +1,34 @@
+<h1>世帯一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>世帯ID</th>
+    <th>組名</th>
+    <th>苗字</th>
+    <th>住所</th>
+    <th>電話番号</th>
+    <th>lat</th>
+    <th>lon</th>
+  </tr>
+
+<% @families.each do |family| %>
+  <tr>
+    <td><%=h family.id %></td>
+    <td><%=h Group.find(family.group_id).group_name %></td>
+    <td><a href="http://maps.google.co.jp/maps?q=<%=h family.home_lat %>,<%=h family.home_lon %>" target="_place"><%=h family.family_name %></a></td>
+    <td><%=h family.address %></td>
+    <td><%=h family.home_tel %></td>
+    <td><%=h family.home_lat %></td>
+    <td><%=h family.home_lon %></td>
+    <td><%= link_to 'Edit', edit_family_path(family) %></td>
+    <td><%= link_to 'Destroy', family, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New family', new_family_path %> |
+<%= link_to 'TOP', "/logins/top" %> |
+<a href="http://maps.google.co.jp/?ie=UTF8&ll=33.225172,131.611812&spn=0.007584,0.010493&z=17&brcurrent=3,0x35469f42f1b3200f:0x59c7ce6736e75fed,1" target="_blank">上野地区の地図</a>
+

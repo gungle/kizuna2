@@ -1,0 +1,48 @@
+<h1>個人情報一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>個人ID</th>
+    <th>組名</th>
+    <th>世帯名</th>
+    <th>Login</th>
+    <th>Password</th>
+    <th>氏名（フルネーム）</th>
+    <th>誕生日</th>
+    <th>性別</th>
+    <th>血液型</th>
+    <th>災害弱者種別</th>
+    <th>電話番号</th>
+    <th>職業</th>
+    <th>得意分野</th>
+    <th>既往歴</th>
+    <th>アイコンパス</th>
+  </tr>
+
+<% @personals.each do |personal| %>
+  <tr>
+    <td><%=h personal.id %></td>
+    <td><%=h Group.find(personal.group_id).group_name %></td>
+    <td><%=h Family.find(personal.family_id).family_name %></td>
+    <td><%=h personal.login %></td>
+    <td><%=h personal.password %></td>
+    <td><%=h personal.full_name %></td>
+    <td><%=h personal.birthday %></td>
+    <td><%= getValByCode(getsexkind, personal.sex) %></td>
+    <td><%= getValByCode(getbloodkind, personal.blood) %></td>
+    <td><%= getValByCode(getweakkind, personal.weak_kind) %></td>
+    <td><%=h personal.personal_tel %></td>
+    <td><%=h personal.job %></td>
+    <td><%=h personal.good_field %></td>
+    <td><%=h personal.medical_history %></td>
+    <td><%=h personal.icon_path %></td>
+    <td><%= link_to 'Edit', edit_personal_path(personal) %></td>
+    <td><%= link_to 'Destroy', personal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New personal', new_personal_path %>
+<%= link_to 'TOP', "/logins/top" %>

@@ -1,0 +1,32 @@
+<h1>位置一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>組名</th>
+    <th>位置種別</th>
+    <th>タイトル</th>
+    <th>説明</th>
+    <th>lat</th>
+    <th>lon</th>
+    <th>写真のパス</th>
+  </tr>
+
+<% @places.each do |place| %>
+  <tr>
+    <td><%=h Group.find(place.group_id).group_name %></td>
+    <td><%= getValByCode(getplacekind, place.place_kind) %></td>
+    <td><a href="http://maps.google.co.jp/maps?q=<%=h place.place_lat %>,<%=h place.place_lon %>" target="_place"><%=h place.place_title %></a></td>
+    <td><%=h place.place_explain %></td>
+    <td><%=h place.place_lat %></td>
+    <td><%=h place.place_lon %></td>
+    <td><%=h place.picture_path %></td>
+    <td><%= link_to 'Edit', edit_place_path(place) %></td>
+    <td><%= link_to 'Destroy', place, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New place', new_place_path %>
+<%= link_to 'TOP', "/logins/top" %>

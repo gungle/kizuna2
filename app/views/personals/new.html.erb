@@ -1,0 +1,67 @@
+<h1>個人情報新規</h1>
+
+<% form_for(@personal) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    組ID<br />
+	<%= collection_select(:personal, :group_id, Group.find(:all), :id, :group_name)%> 
+  </p>
+  <p>
+    世帯ID<br />
+	<%= collection_select(:personal, :family_id, Family.find(:all), :id, :family_name)%> 
+  </p>
+  <p>
+    ログイン<br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    パスワード<br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    名前<br />
+    <%= f.text_field :full_name %>
+  </p>
+  <p>
+    誕生日<br />
+    <%= f.date_select :birthday, :start_year => 1910, :end_year => 2010, :use_month_numbers => true %>
+  </p>
+  <p>
+    性別<br />
+	<%= select(:personal, :sex, getsexkind)%>
+  </p>
+  <p>
+    血液型<br />
+	<%= select(:personal, :blood, getbloodkind)%>
+  </p>
+  <p>
+    災害弱者<br />
+	<%= select(:personal, :weak_kind, getweakkind)%>
+  </p>
+  <p>
+    電話（個人）<br />
+    <%= f.text_field :personal_tel %>　（ハイフン抜き）
+  </p>
+  <p>
+    職業<br />
+    <%= f.text_field :job %>
+  </p>
+  <p>
+    得意分野<br />
+    <%= f.text_area :good_field %>
+  </p>
+  <p>
+    既往歴<br />
+    <%= f.text_area :medical_history %>
+  </p>
+  <p>
+    アイコンパス<br />
+    <%= f.text_field :icon_path, :size => "64" %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', personals_path %>

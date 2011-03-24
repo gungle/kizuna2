@@ -1,0 +1,37 @@
+<h1>災害情報一覧</h1>
+
+<table border="1">
+  <tr>
+    <th>個人名</th>
+    <th>組名</th>
+    <th>Emergency kind</th>
+    <th>Disaster status kind</th>
+    <th>Triage kind</th>
+    <th>Done kind</th>
+    <th>Now lat</th>
+    <th>Now lon</th>
+    <th>Picture path</th>
+  </tr>
+
+<% @disasters.each do |disaster| %>
+  <tr>
+    <td><%=h Personal.find(disaster.personal_id).full_name %></td>
+    <td><%=h Group.find(disaster.group_id).group_name %></td>
+    <td><%= getValByCode(getemergencykind, disaster.emergency_kind) %></td>
+    <td><%= getValByCode(getdisasterkind, disaster.disaster_status_kind) %></td>
+    <td><%= getValByCode(gettriagekind, disaster.triage_kind) %></td>
+    <td><%= getValByCode(getdonekind, disaster.done_kind) %></td>
+    <td><a href="http://maps.google.co.jp/maps?q=<%=h disaster.now_lat %>,<%=h disaster.now_lon %>" target="_place"><%=h disaster.now_lat %></a></td>
+    <td><%=h disaster.now_lon %></td>
+    <td><%=h disaster.picture_path %></td>
+    <td><%=h disaster.disaster_memo %></td>
+    <td><%= link_to 'Edit', edit_disaster_path(disaster) %></td>
+    <td><%= link_to 'Destroy', disaster, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New disaster', new_disaster_path %>
+<%= link_to 'TOP', "/logins/top" %>
